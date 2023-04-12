@@ -64,7 +64,7 @@ def login():
             # This is where if the password is incorrect
             else:
                 print("\nInvalid password. Try again!")
-                main_routine()
+                login()
 
         # This is where the username does not exist
         else:
