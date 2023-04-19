@@ -24,11 +24,6 @@ nachos_price = 4.80
 quiches_price = 4.80
 chicken_burgers_price = 4.80
 sushi_price = 5.80
-nachos_total_price = 0
-quiches_total_price = 0
-chicken_burgers_total_price = 0
-sushi_total_price = 0
-total_price = 0
 
 # This is the main routine
 def main_frame():
@@ -314,19 +309,6 @@ def add_items_frame():
 # This is where the user can view what they have ordered
 def view_basket_frame():
     global view_basket_frame
-    global nachos
-    global quiches
-    global chicken_burgers
-    global sushi
-    global nachos_price
-    global quiches_price
-    global chicken_burgers_price
-    global sushi_price
-    global nachos_total_price
-    global quiches_total_price
-    global chicken_burgers_total_price
-    global sushi_total_price
-    global total_price
 
     # This is where the frame is created for the user to view what they have ordered
     root.title("View Basket")
@@ -339,6 +321,9 @@ def view_basket_frame():
         root.title("Menu")
         menu_frame.grid()
         view_basket_frame.grid_forget()
+
+    def order_function():
+        order_state_label.configure(text="Order sent!")
 
     # This is where the totals are found
     nachos_total_price = nachos * nachos_price
@@ -356,6 +341,7 @@ def view_basket_frame():
 
     # This is where the button is created to leave
     back_button = Button(view_basket_frame, text="Back", command=back_function)
+    order_button = Button(view_basket_frame, text="Order", command=order_function)
 
     # This is where the labels are created to show the quantity of each item
     quantity_label = Label(view_basket_frame, text="Quantity")
@@ -379,13 +365,20 @@ def view_basket_frame():
     sushi_total_price_label = Label(view_basket_frame, text="${:.2f}".format(sushi_total_price))
 
     # This is where the label is created to show the total
+    total_label = Label(view_basket_frame, text="Total:")
     total_price_label = Label(view_basket_frame, text="${:.2f}".format(total_price))
+
+    # This is where the state of the order is displayed
+    order_state_label = Label(view_basket_frame)
 
     # This is where the labels and buttons which always show are called
     items_label.grid(row=0, column=0)
     back_button.grid(row=5, column=0)
+    order_state_label.grid(row=6, column=0)
     quantity_label.grid(row=0, column=1)
+    order_button.grid(row=5, column=1)
     price_label.grid(row=0, column=2)
+    total_label.grid(row=5, column=2)
     total_prices_label.grid(row=0, column=3)
     total_price_label.grid(row=5, column=3)
 
