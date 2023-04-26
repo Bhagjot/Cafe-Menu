@@ -5,6 +5,7 @@
 # Libraries are imported for using GUI and external files
 from tkinter import *
 from tkinter import ttk
+from PIL import Image, ImageTk
 import json
 
 # The external file holds the account logins of the users
@@ -13,7 +14,7 @@ accounts = json.load(open("accounts.json", "r"))
 # This is where the GUI is created
 root = Tk()
 root.title("Cafe Menu")
-root.geometry("300x200")
+root.geometry("300x350")
 
 # These are the variables which store the quantity, price, and total_prices of each item
 nachos = 0
@@ -34,6 +35,15 @@ def main_frame():
     main_frame.grid()
     menu_frame.grid_forget()
 
+    # Image is located, resized, and set as a variable
+    front_image_file = Image.open("front_image.jpg")
+    front_image_resized = front_image_file.resize((200,200))
+    front_image = ImageTk.PhotoImage(front_image_resized)
+
+    # The image is now converted in to a label
+    front_image_label = Label(main_frame, image=front_image)
+    front_image_label.image = front_image
+
     # Welcome message label is created
     welcome_message = Label(main_frame, text="Welcome to the Cafe Menu application!")
     
@@ -42,9 +52,10 @@ def main_frame():
     create_account_button = Button(main_frame, text="Create Account", command=create_account_frame)
 
     # All the labels and buttons are called here
-    welcome_message.pack(padx=5, pady=5)
-    login_button.pack(padx=5, pady=5)
-    create_account_button.pack(padx=5, pady=5)
+    front_image_label.grid()
+    welcome_message.grid()
+    login_button.grid()
+    create_account_button.grid()
 
 # This is the how the user can login
 def login_frame():
