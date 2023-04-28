@@ -17,14 +17,18 @@ root.title("Cafe Menu")
 root.geometry("300x350")
 
 # These are the variables which store the quantity, price, and total_prices of each item
-nachos = 0
-quiches = 0
-chicken_burgers = 0
-sushi = 0
-nachos_price = 4.80
-quiches_price = 4.80
-chicken_burgers_price = 4.80
-sushi_price = 5.80
+item_1 = "Nachos"
+item_2 = "Quiches"
+item_3 = "Chicken Burgers"
+item_4 = "Sushi"
+item_1_quantity = 0
+item_2_quantity = 0
+item_3_quantity = 0
+item_4_quantity = 0
+item_1_price = 4.80
+item_2_price = 4.80
+item_3_price = 4.80
+item_4_price = 5.80
 
 # This is the main routine
 def main_frame():
@@ -134,12 +138,21 @@ def create_account_frame():
                         valid_label.configure(text="Username taken.")
                         break
 
+                    elif username == "":
+                        valid_label.configure(text="Please type an username.")
+                        break
+
                     # This is where the password is saved to the username in the external file
                     else:
-                        accounts[username] = password_entry.get()
-                        json.dump(accounts, open("accounts.json", "w"))
-                        valid_label.configure(text="Account created")
-                        break
+                        if password_entry.get() == "":
+                            valid_label.configure(text="Please type a password.")
+                            break
+
+                        else:
+                            accounts[username] = password_entry.get()
+                            json.dump(accounts, open("accounts.json", "w"))
+                            valid_label.configure(text="Account created")
+                            break
                 
                 # This is the message the user receives if the user is not allowed to create an account
                 else:
@@ -223,51 +236,59 @@ def add_items_frame():
 
     # This is where the user clicks the add button
     def add_function():
-        global nachos
-        global quiches
-        global chicken_burgers
-        global sushi
+        global item_1
+        global item_2
+        global item_3
+        global item_4
+        global item_1_quantity
+        global item_2_quantity
+        global item_3_quantity
+        global item_4_quantity
 
         # This is where the program checks what is selected and adds the quantity
-        if items_combobox.get() == "Nachos":
-            nachos += int(quantity_combobox.get())
+        if items_combobox.get() == item_1:
+            item_1_quantity += int(quantity_combobox.get())
 
-        elif items_combobox.get() == "Quiches":
-            quiches += int(quantity_combobox.get())
+        elif items_combobox.get() == item_2:
+            item_2_quantity += int(quantity_combobox.get())
         
-        elif items_combobox.get() == "Chicken Burgers":
-            chicken_burgers += int(quantity_combobox.get())
+        elif items_combobox.get() == item_3:
+            item_3_quantity += int(quantity_combobox.get())
         
-        elif items_combobox.get() == "Sushi":
-            sushi += int(quantity_combobox.get())
+        elif items_combobox.get() == item_4:
+            item_4_quantity += int(quantity_combobox.get())
 
     # This is where the user can remove items from the list so they do not order anything on accident
     def remove_function():
-        global nachos
-        global quiches
-        global chicken_burgers
-        global sushi
+        global item_1
+        global item_2
+        global item_3
+        global item_4
+        global item_1_quantity
+        global item_2_quantity
+        global item_3_quantity
+        global item_4_quantity
 
         # This is where the program checks what was selected and substracts the quantity, if the item goes into negatives it changes it to zero
-        if items_combobox.get() == "Nachos":
-            nachos -= int(quantity_combobox.get())
-            if nachos < 0:
-                nachos = 0
+        if items_combobox.get() == item_1:
+            item_1_quantity -= int(quantity_combobox.get())
+            if item_1_quantity < 0:
+                item_1_quantity = 0
 
-        elif items_combobox.get() == "Quiches":
-            quiches -= int(quantity_combobox.get())
-            if quiches < 0:
-                quiches = 0
+        elif items_combobox.get() == item_2:
+            item_2_quantity -= int(quantity_combobox.get())
+            if item_2_quantity < 0:
+                item_2_quantity = 0
         
-        elif items_combobox.get() == "Chicken Burgers":
-            chicken_burgers -= int(quantity_combobox.get())
-            if chicken_burgers < 0:
-                chicken_burgers = 0
+        elif items_combobox.get() == item_3:
+            item_3_quantity -= int(quantity_combobox.get())
+            if item_3_quantity < 0:
+                item_3_quantity = 0
         
-        elif items_combobox.get() == "Sushi":
-            sushi -= int(quantity_combobox.get())
-            if sushi < 0:
-                sushi = 0
+        elif items_combobox.get() == item_4:
+            item_4_quantity -= int(quantity_combobox.get())
+            if item_4_quantity < 0:
+                item_4_quantity = 0
 
     # This is where the user can leave the add to basket frame
     def back_function():
@@ -276,14 +297,14 @@ def add_items_frame():
         add_items_frame.grid_forget()
 
     # This is where the lists are created for the comboboxes to use
-    items = ["Nachos", "Quiches", "Chicken Burgers", "Sushi"]
+    items = [item_1, item_2, item_3, item_4]
     quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     # Here are the labels created of the items so the user knows what they can order
-    nachos_label = Label(add_items_frame, text="Nachos")
-    quiches_label = Label(add_items_frame, text="Quiches")
-    chicken_burgers_label = Label(add_items_frame, text="Chicken Burgers")
-    sushi_label = Label(add_items_frame, text="Sushi")
+    item_1_label = Label(add_items_frame, text=item_1)
+    item_2_label = Label(add_items_frame, text=item_2)
+    item_3_label = Label(add_items_frame, text=item_3)
+    item_4_label = Label(add_items_frame, text=item_4)
 
     # Here are the comboboxes created so the user can select the items
     items_combobox = ttk.Combobox(add_items_frame, value=items)
@@ -297,23 +318,23 @@ def add_items_frame():
     remove_button = Button(add_items_frame, text="Remove", command=remove_function)
 
     # Here are the labels created to show the prices of the items
-    nachos_price_label = Label(add_items_frame, text="${:.2f}".format(nachos_price))
-    quiches_price_label = Label(add_items_frame, text="${:.2f}".format(quiches_price))
-    chicken_burgers_price_label = Label(add_items_frame, text="${:.2f}".format(chicken_burgers_price))
-    sushi_price_label = Label(add_items_frame, text="${:.2f}".format(sushi_price))
+    item_1_price_label = Label(add_items_frame, text="${:.2f}".format(item_1_price))
+    item_2_price_label = Label(add_items_frame, text="${:.2f}".format(item_2_price))
+    item_3_price_label = Label(add_items_frame, text="${:.2f}".format(item_3_price))
+    item_4_price_label = Label(add_items_frame, text="${:.2f}".format(item_4_price))
 
-    # Here are all teh labels, comboboxes, and buttons called
-    nachos_label.grid(row=0, column=0)
-    quiches_label.grid(row=1, column=0)
-    chicken_burgers_label.grid(row=2, column=0)
-    sushi_label.grid(row=3, column=0)
+    # Here are all the labels, comboboxes, and buttons called
+    item_1_label.grid(row=0, column=0)
+    item_2_label.grid(row=1, column=0)
+    item_3_label.grid(row=2, column=0)
+    item_4_label.grid(row=3, column=0)
     items_combobox.grid(row=4, column=0)
     add_button.grid(row=5, column=0)
     back_button.grid(row=6, column=0)
-    nachos_price_label.grid(row=0, column=1)
-    quiches_price_label.grid(row=1, column=1)
-    chicken_burgers_price_label.grid(row=2, column=1)
-    sushi_price_label.grid(row=3, column=1)
+    item_1_price_label.grid(row=0, column=1)
+    item_2_price_label.grid(row=1, column=1)
+    item_3_price_label.grid(row=2, column=1)
+    item_4_price_label.grid(row=3, column=1)
     quantity_combobox.grid(row=4, column=1)
     remove_button.grid(row=5, column=1)
 
@@ -337,18 +358,18 @@ def view_basket_frame():
         order_state_label.configure(text="Order sent!")
 
     # This is where the totals are found
-    nachos_total_price = nachos * nachos_price
-    quiches_total_price = quiches * quiches_price
-    chicken_burgers_total_price = chicken_burgers * chicken_burgers_price
-    sushi_total_price = sushi * sushi_price
-    total_price = nachos_total_price + quiches_total_price + chicken_burgers_total_price + sushi_total_price
+    item_1_total_price = item_1_quantity * item_1_price
+    item_2_total_price = item_2_quantity * item_2_price
+    item_3_total_price = item_3_quantity * item_3_price
+    item_4_total_price = item_4_quantity * item_4_price
+    total_price = item_1_total_price + item_2_total_price + item_3_total_price + item_4_total_price
 
     # This is where the labels are created to show the items
     items_label = Label(view_basket_frame, text="Items")
-    nachos_label = Label(view_basket_frame, text="Nachos")
-    quiches_label = Label(view_basket_frame, text="Quiches")
-    chicken_burgers_label = Label(view_basket_frame, text="Chicken Burgers")
-    sushi_label = Label(view_basket_frame, text="Sushi")
+    item_1_label = Label(view_basket_frame, text=item_1)
+    item_2_label = Label(view_basket_frame, text=item_2)
+    item_3_label = Label(view_basket_frame, text=item_3)
+    item_4_label = Label(view_basket_frame, text=item_4)
 
     # This is where the button is created to leave
     back_button = Button(view_basket_frame, text="Back", command=back_function)
@@ -356,24 +377,24 @@ def view_basket_frame():
 
     # This is where the labels are created to show the quantity of each item
     quantity_label = Label(view_basket_frame, text="Quantity")
-    nachos_quantity_label = Label(view_basket_frame, text=f"{nachos}")
-    quiches_quantity_label = Label(view_basket_frame, text=f"{quiches}")
-    chicken_burgers_quantity_label = Label(view_basket_frame, text=f"{chicken_burgers}")
-    sushi_quantity_label = Label(view_basket_frame, text=f"{sushi}")
+    item_1_quantity_label = Label(view_basket_frame, text=f"{item_1_quantity}")
+    item_2_quantity_label = Label(view_basket_frame, text=f"{item_2_quantity}")
+    item_3_quantity_label = Label(view_basket_frame, text=f"{item_3_quantity}")
+    item_4_quantity_label = Label(view_basket_frame, text=f"{item_4_quantity}")
 
     # This is where the labels are created to show the price of each item
     price_label = Label(view_basket_frame, text="Price each")
-    nachos_price_label = Label(view_basket_frame, text="${:.2f}".format(nachos_price))
-    quiches_price_label = Label(view_basket_frame, text="${:.2f}".format(quiches_price))
-    chicken_burgers_price_label = Label(view_basket_frame, text="${:.2f}".format(chicken_burgers_price))
-    sushi_price_label = Label(view_basket_frame, text="${:.2f}".format(sushi_price))
+    item_1_price_label = Label(view_basket_frame, text="${:.2f}".format(item_1_price))
+    item_2_price_label = Label(view_basket_frame, text="${:.2f}".format(item_2_price))
+    item_3_price_label = Label(view_basket_frame, text="${:.2f}".format(item_3_price))
+    item_4_price_label = Label(view_basket_frame, text="${:.2f}".format(item_4_price))
 
     # This is where the labels are created to show the total prices of each item
     total_prices_label = Label(view_basket_frame, text="Total Prices")
-    nachos_total_price_label = Label(view_basket_frame, text="${:.2f}".format(nachos_total_price))
-    quiches_total_price_label = Label(view_basket_frame, text="${:.2f}".format(quiches_total_price))
-    chicken_burgers_total_price_label = Label(view_basket_frame, text="${:.2f}".format(chicken_burgers_total_price))
-    sushi_total_price_label = Label(view_basket_frame, text="${:.2f}".format(sushi_total_price))
+    item_1_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_1_total_price))
+    item_2_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_2_total_price))
+    item_3_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_3_total_price))
+    item_4_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_4_total_price))
 
     # This is where the label is created to show the total
     total_label = Label(view_basket_frame, text="Total:")
@@ -394,32 +415,32 @@ def view_basket_frame():
     total_price_label.grid(row=5, column=3)
 
     # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if nachos > 0:
-        nachos_label.grid(row=1, column=0)
-        nachos_quantity_label.grid(row=1, column=1)
-        nachos_price_label.grid(row=1, column=2)
-        nachos_total_price_label.grid(row=1, column=3)
+    if item_1_quantity > 0:
+        item_1_label.grid(row=1, column=0)
+        item_1_quantity_label.grid(row=1, column=1)
+        item_1_price_label.grid(row=1, column=2)
+        item_1_total_price_label.grid(row=1, column=3)
 
     # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if quiches > 0:
-        quiches_label.grid(row=2, column=0)
-        quiches_quantity_label.grid(row=2, column=1)
-        quiches_price_label.grid(row=2, column=2)
-        quiches_total_price_label.grid(row=2, column=3)
+    if item_2_quantity > 0:
+        item_2_label.grid(row=2, column=0)
+        item_2_quantity_label.grid(row=2, column=1)
+        item_2_price_label.grid(row=2, column=2)
+        item_2_total_price_label.grid(row=2, column=3)
 
     # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if chicken_burgers > 0:
-        chicken_burgers_label.grid(row=3, column=0)
-        chicken_burgers_quantity_label.grid(row=3, column=1)
-        chicken_burgers_price_label.grid(row=3, column=2)
-        chicken_burgers_total_price_label.grid(row=3, column=3)
+    if item_3_quantity > 0:
+        item_3_label.grid(row=3, column=0)
+        item_3_quantity_label.grid(row=3, column=1)
+        item_3_price_label.grid(row=3, column=2)
+        item_3_total_price_label.grid(row=3, column=3)
 
     # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if sushi > 0:
-        sushi_label.grid(row=4, column=0)
-        sushi_quantity_label.grid(row=4, column=1)
-        sushi_price_label.grid(row=4, column=2)
-        sushi_total_price_label.grid(row=4, column=3)
+    if item_4_quantity > 0:
+        item_4_label.grid(row=4, column=0)
+        item_4_quantity_label.grid(row=4, column=1)
+        item_4_price_label.grid(row=4, column=2)
+        item_4_total_price_label.grid(row=4, column=3)
 
 # This is where program is called to make sure it can only be run through the terminal and not through another program for a safety measure.
 if __name__ == "__main__":
