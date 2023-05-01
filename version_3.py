@@ -24,6 +24,8 @@ item_4 = "Sushi"
 items = [item_1, item_2, item_3, item_4]
 item_quantities = [0,0,0,0]
 item_prices = [4.8, 4.8, 4.8, 5.8]
+item_total_prices = [0, 0, 0, 0]
+total_price = 0
 
 # This is the main routine
 def main_frame():
@@ -229,7 +231,7 @@ def add_items_frame():
     add_items_frame.grid()
     menu_frame.grid_forget()
 
-    # This is where the user clicks the add button
+    # This is when the user clicks the add button
     def add_function():
         global items
         global item_quantities
@@ -242,16 +244,17 @@ def add_items_frame():
             else:
                 i += 1
 
-    # This is where the user can remove items from the list so they do not order anything on accident
+    # This is when the user can remove items from the basket
     def remove_function():
         global items
         global item_quantities
 
-        # This is where the program checks what was selected and substracts the quantity, if the item goes into negatives it changes it to zero
+        # This is where the program checks what was selected and substracts the quantity
         i = 0
         for item_for_sale in items:
             if items_combobox.get() == item_for_sale:
                 item_quantities[i] -= int(quantity_combobox.get())
+                # If the quantity is negative, it is changed to zero
                 if item_quantities[i] < 0:
                     item_quantities[i] = 0
             else:
@@ -267,10 +270,10 @@ def add_items_frame():
     quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     # Here are the labels created of the items so the user knows what they can order
-    item_1_label = Label(add_items_frame, text=item_1)
-    item_2_label = Label(add_items_frame, text=item_2)
-    item_3_label = Label(add_items_frame, text=item_3)
-    item_4_label = Label(add_items_frame, text=item_4)
+    item_1_label = Label(add_items_frame, text=items[0])
+    item_2_label = Label(add_items_frame, text=items[1])
+    item_3_label = Label(add_items_frame, text=items[2])
+    item_4_label = Label(add_items_frame, text=items[3])
 
     # Here are the comboboxes created so the user can select the items
     items_combobox = ttk.Combobox(add_items_frame, value=items)
@@ -307,6 +310,8 @@ def add_items_frame():
 # This is where the user can view what they have ordered
 def view_basket_frame():
     global view_basket_frame
+    global total_price
+    global items
 
     # This is where the frame is created for the user to view what they have ordered
     root.title("View Basket")
@@ -324,18 +329,19 @@ def view_basket_frame():
         order_state_label.configure(text="Order sent!")
 
     # This is where the totals are found
-    item_1_total_price = item_quantities[0] * item_prices[0]
-    item_2_total_price = item_quantities[1] * item_prices[1]
-    item_3_total_price = item_quantities[2] * item_prices[2]
-    item_4_total_price = item_quantities[3] * item_prices[3]
-    total_price = item_1_total_price + item_2_total_price + item_3_total_price + item_4_total_price
+    i = 0
+    for item in items:
+        item_total_prices[i] = item_quantities[i] * item_prices[i]
+        total_price += item_total_prices[i]
+        i += 1
 
     # This is where the labels are created to show the items
     items_label = Label(view_basket_frame, text="Items")
-    item_1_label = Label(view_basket_frame, text=item_1)
-    item_2_label = Label(view_basket_frame, text=item_2)
-    item_3_label = Label(view_basket_frame, text=item_3)
-    item_4_label = Label(view_basket_frame, text=item_4)
+    item_1_label = Label(view_basket_frame, text=items[0])
+    item_2_label = Label(view_basket_frame, text=items[1])
+    item_3_label = Label(view_basket_frame, text=items[2])
+    item_4_label = Label(view_basket_frame, text=items[3])
+    item_labels = [item_1_label, item_2_label, item_3_label, item_4_label]
 
     # This is where the button is created to leave
     back_button = Button(view_basket_frame, text="Back", command=back_function)
@@ -347,6 +353,7 @@ def view_basket_frame():
     item_2_quantity_label = Label(view_basket_frame, text=f"{item_quantities[1]}")
     item_3_quantity_label = Label(view_basket_frame, text=f"{item_quantities[2]}")
     item_4_quantity_label = Label(view_basket_frame, text=f"{item_quantities[3]}")
+    item_quantity_labels = [item_1_quantity_label, item_2_quantity_label, item_3_quantity_label, item_4_quantity_label]
 
     # This is where the labels are created to show the price of each item
     price_label = Label(view_basket_frame, text="Price each")
@@ -354,13 +361,15 @@ def view_basket_frame():
     item_2_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[1]))
     item_3_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[2]))
     item_4_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[3]))
+    item_price_labels = [item_1_price_label, item_2_price_label, item_3_price_label, item_4_price_label]
 
     # This is where the labels are created to show the total prices of each item
     total_prices_label = Label(view_basket_frame, text="Total Prices")
-    item_1_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_1_total_price))
-    item_2_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_2_total_price))
-    item_3_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_3_total_price))
-    item_4_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_4_total_price))
+    item_1_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[0]))
+    item_2_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[1]))
+    item_3_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[2]))
+    item_4_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[3]))
+    item_total_price_labels = [item_1_total_price_label, item_2_total_price_label, item_3_total_price_label, item_4_total_price_label]
 
     # This is where the label is created to show the total
     total_label = Label(view_basket_frame, text="Total:")
@@ -380,33 +389,20 @@ def view_basket_frame():
     total_prices_label.grid(row=0, column=3)
     total_price_label.grid(row=5, column=3)
 
-    # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if item_quantities[0] > 0:
-        item_1_label.grid(row=1, column=0)
-        item_1_quantity_label.grid(row=1, column=1)
-        item_1_price_label.grid(row=1, column=2)
-        item_1_total_price_label.grid(row=1, column=3)
-
-    # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if item_quantities[1] > 0:
-        item_2_label.grid(row=2, column=0)
-        item_2_quantity_label.grid(row=2, column=1)
-        item_2_price_label.grid(row=2, column=2)
-        item_2_total_price_label.grid(row=2, column=3)
-
-    # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if item_quantities[2] > 0:
-        item_3_label.grid(row=3, column=0)
-        item_3_quantity_label.grid(row=3, column=1)
-        item_3_price_label.grid(row=3, column=2)
-        item_3_total_price_label.grid(row=3, column=3)
-
-    # This is where it is checked if the user ordered this item, if not then the labels for this item will not show
-    if item_quantities[3] > 0:
-        item_4_label.grid(row=4, column=0)
-        item_4_quantity_label.grid(row=4, column=1)
-        item_4_price_label.grid(row=4, column=2)
-        item_4_total_price_label.grid(row=4, column=3)
+# This is where the program only displays the item if the item was ordered
+    i = 0
+    c = 0
+    r = 1
+    for item in items:
+        if item_quantities[i] > 0:
+            item_labels[i].grid(row=r, column=c)
+            item_quantity_labels[i].grid(row=r, column=(c+1))
+            item_price_labels[i].grid(row=r, column=(c+2))
+            item_total_price_labels[i].grid(row=r, column=(c+3))
+            i += 1
+            r += 1
+        else:
+            i += 1
 
 # This is where program is called to make sure it can only be run through the terminal and not through another program for a safety measure.
 if __name__ == "__main__":
