@@ -38,7 +38,6 @@ def main_frame():
     # Here the main routine frame is created
     main_frame = Frame(root)
     main_frame.grid()
-    menu_frame.grid_forget()
 
     # Image is located, resized, and set as a variable
     front_image_file = Image.open("front_image.jpg")
@@ -72,17 +71,34 @@ def login_frame():
     login_frame.grid()
     main_frame.grid_forget()
 
+    profile_image_file = Image.open("profile_image.png")
+    profile_image_resized = profile_image_file.resize((200,200))
+    profile_image = ImageTk.PhotoImage(profile_image_resized)
+
+    profile_image_label = Label(login_frame, image=profile_image)
+    profile_image_label.image = profile_image
+
     # This is where the username is checked
     def login_function():
         global accounts
-        if username_entry.get() in accounts:
+        username = username_entry.get()
+        password = password_entry.get()
 
+        if username in accounts:
             # This is where the password is checked
-            if password_entry.get() == accounts.get(username_entry.get(), None):
-                menu_frame.grid()
+            if password == accounts.get(username, None):
+                menu_frame_function()
                 login_frame.grid_forget()
+            
+            elif password == "":
+                access_label.configure(text="Please type a password.")
+                
             else:
                 access_label.configure(text="Incorrect password.")
+
+        elif username == "":
+            access_label.configure(text="Please type an username.")
+
         else:
             access_label.configure(text="Account does not exist.")
 
@@ -106,13 +122,14 @@ def login_frame():
     back_button = Button(login_frame, text="Back", command=back_function)
 
     # Here all the labels, entries and buttons are called
-    username_label.grid(row=0, column=0)
-    password_label.grid(row=1, column=0)
-    login_button.grid(row=2, column=0)
-    access_label.grid(row=3, column=0)
-    username_entry.grid(row=0, column=1)
-    password_entry.grid(row=1, column=1)
-    back_button.grid(row=2, column=1)
+    profile_image_label.grid(row=0, column=0, columnspan=2)
+    username_label.grid(row=1, column=0)
+    password_label.grid(row=2, column=0)
+    login_button.grid(row=3, column=0)
+    access_label.grid(row=4, column=0, columnspan=2)
+    username_entry.grid(row=1, column=1)
+    password_entry.grid(row=2, column=1)
+    back_button.grid(row=3, column=1)
 
 # This is where the user can create their account
 def create_account_frame():
@@ -133,6 +150,7 @@ def create_account_frame():
                 age = int(age_entry.get())
                 if age >= 13 and age <= 18:
                     username = username_entry.get()
+                    password = password_entry.get()
 
                     # This is where the username is checked if it is taken
                     if username in accounts:
@@ -143,10 +161,18 @@ def create_account_frame():
                         valid_label.configure(text="Please type an username.")
                         break
 
+                    elif " " in username:
+                        valid_label.configure(text="Space is not allowed in username.")
+                        break
+
                     # This is where the password is saved to the username in the external file
                     else:
-                        if password_entry.get() == "":
+                        if password == "":
                             valid_label.configure(text="Please type a password.")
+                            break
+
+                        elif " " in password:
+                            valid_label.configure(text="Space is not allowed in password.")
                             break
 
                         else:
@@ -195,11 +221,12 @@ def create_account_frame():
     age_entry.grid(row=0, column=1)
     username_entry.grid(row=1, column=1)
     password_entry.grid(row=2, column=1)
-    valid_label.grid(row=3, column=1)
+    valid_label.grid(row=3, column=1, columnspan=2)
 
 # This is where the the user gets to when they login, 
 # they can choose options to add items to basket, view the basket or to logout
-def menu_frame():
+def menu_frame_function():
+    global menu_frame_function
     global menu_frame
 
     # This is where the menu frame is created
@@ -212,22 +239,31 @@ def menu_frame():
         main_frame.grid()
         menu_frame.grid_forget()
 
+    menu_image_file = Image.open("menu_image.jpg")
+    menu_image_resized = menu_image_file.resize((208,117))
+    menu_image = ImageTk.PhotoImage(menu_image_resized)
+
+    menu_image_label = Label(menu_frame, image=menu_image)
+    menu_image_label.image = menu_image
+
     # This is where the label is created to tell the user to select an option
     option_label = Label(menu_frame, text="Please choose an option below.")
 
     # These are the option buttons being created
-    add_items_button = Button(menu_frame, text="Add items to basket", command=add_items_frame)
-    view_basket_button = Button(menu_frame, text="View basket", command=view_basket_frame)
+    add_items_button = Button(menu_frame, text="Add items to basket", command=add_items_frame_function)
+    view_basket_button = Button(menu_frame, text="View basket", command=view_basket_frame_function)
     logout_button = Button(menu_frame, text="Logout", command=logout_function)
 
     # This is where all the labels and buttons are called
-    option_label.pack()
-    add_items_button.pack()
-    view_basket_button.pack()
-    logout_button.pack()
+    menu_image_label.grid()
+    option_label.grid()
+    add_items_button.grid()
+    view_basket_button.grid()
+    logout_button.grid()
 
 # This is where the user can add items to their basket
-def add_items_frame():
+def add_items_frame_function():
+    global add_items_frame_function
     global add_items_frame
 
     # This is where the frame is created so the user can add items to the basket
@@ -244,8 +280,10 @@ def add_items_frame():
         # This is where the program checks what is selected and adds the quantity
         i = 0
         for item_for_sale in items:
+            quantity = int(quantity_combobox.get())
             if items_combobox.get() == item_for_sale:
-                item_quantities[i] += int(quantity_combobox.get())
+                item_quantities[i] += quantity
+                inform_label.configure(text=f"{quantity} {item_for_sale} added.")
             else:
                 i += 1
 
@@ -257,8 +295,10 @@ def add_items_frame():
         # This is where the program checks what was selected and substracts the quantity
         i = 0
         for item_for_sale in items:
+            quantity = int(quantity_combobox.get())
             if items_combobox.get() == item_for_sale:
-                item_quantities[i] -= int(quantity_combobox.get())
+                item_quantities[i] -= quantity
+                inform_label.configure(text=f"{quantity} {item_for_sale} removed.")
                 # If the quantity is negative, it is changed to zero
                 if item_quantities[i] < 0:
                     item_quantities[i] = 0
@@ -307,6 +347,9 @@ def add_items_frame():
     item_7_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[6]))
     item_8_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[7]))
 
+    # Here the label for informing the user about their actions is created
+    inform_label = Label(add_items_frame)
+
     # Here are all the labels, comboboxes, and buttons displayed
     column_0_widgets = [
         items_label, 
@@ -334,7 +377,8 @@ def add_items_frame():
         item_7_price_label, 
         item_8_price_label, 
         quantity_combobox, 
-        remove_button
+        remove_button,
+        inform_label
         ]
 
     i = 0
@@ -352,7 +396,8 @@ def add_items_frame():
         r += 1
 
 # This is where the user can view what they have ordered
-def view_basket_frame():
+def view_basket_frame_function():
+    global view_basket_frame_function
     global view_basket_frame
     global total_price
     global items
@@ -370,7 +415,10 @@ def view_basket_frame():
         view_basket_frame.grid_forget()
 
     def order_function():
-        order_state_label.configure(text="Order sent!")
+        if total_price > 0:
+            order_state_label.configure(text="Order sent!")
+        else:
+            order_state_label.configure(text="Please add item/s to basket.")
 
     # This is where the totals are found
     total_price = 0
@@ -390,6 +438,7 @@ def view_basket_frame():
     item_6_label = Label(view_basket_frame, text=items[5])
     item_7_label = Label(view_basket_frame, text=items[6])
     item_8_label = Label(view_basket_frame, text=items[7])
+    
     item_labels = [
         item_1_label, 
         item_2_label, 
@@ -415,6 +464,7 @@ def view_basket_frame():
     item_6_quantity_label = Label(view_basket_frame, text=f"{item_quantities[5]}")
     item_7_quantity_label = Label(view_basket_frame, text=f"{item_quantities[6]}")
     item_8_quantity_label = Label(view_basket_frame, text=f"{item_quantities[7]}")
+    
     item_quantity_labels = [
         item_1_quantity_label, 
         item_2_quantity_label, 
@@ -436,6 +486,7 @@ def view_basket_frame():
     item_6_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[5]))
     item_7_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[6]))
     item_8_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[7]))
+    
     item_price_labels = [
         item_1_price_label, 
         item_2_price_label, 
@@ -457,6 +508,7 @@ def view_basket_frame():
     item_6_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[5]))
     item_7_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[6]))
     item_8_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[7]))
+    
     item_total_price_labels = [
         item_1_total_price_label, 
         item_2_total_price_label, 
@@ -478,7 +530,7 @@ def view_basket_frame():
     # This is where the labels and buttons which always show are called
     items_label.grid(row=0, column=0)
     back_button.grid(row=5, column=0)
-    order_state_label.grid(row=6, column=0)
+    order_state_label.grid(row=6, column=0, columnspan=3)
     quantity_label.grid(row=0, column=1)
     order_button.grid(row=5, column=1)
     price_label.grid(row=0, column=2)
@@ -504,9 +556,6 @@ def view_basket_frame():
 # This is where program is called to make sure it can only be run through the terminal 
 # and not through another program for a safety measure.
 if __name__ == "__main__":
-    # The menu frame is called incase through the usages of the program, 
-    # the user wants to re-login after logging out
-    menu_frame()
     main_frame()
 
 # This is where the GUI is ended
