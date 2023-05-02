@@ -17,15 +17,19 @@ root.title("Cafe Menu")
 root.geometry("300x350")
 
 # These are the variables which store the quantity, price, and total_prices of each item
-item_1 = "Nachos"
-item_2 = "Quiches"
-item_3 = "Chicken Burgers"
-item_4 = "Sushi"
-items = [item_1, item_2, item_3, item_4]
-item_quantities = [0,0,0,0]
-item_prices = [4.8, 4.8, 4.8, 5.8]
-item_total_prices = [0, 0, 0, 0]
-total_price = 0
+items = [
+    "Nachos", 
+    "Quiches", 
+    "Chicken Burgers", 
+    "Sushi", 
+    "Pizza", 
+    "Water", 
+    "Ice Tea", 
+    "Slushies"
+    ]
+item_quantities = [0, 0, 0, 0, 0, 0, 0, 0]
+item_prices = [4.8, 4.8, 4.8, 5.8, 3.8, 3.5, 4.5, 2.5]
+item_total_prices = [0, 0, 0, 0, 0, 0, 0, 0]
 
 # This is the main routine
 def main_frame():
@@ -38,7 +42,7 @@ def main_frame():
 
     # Image is located, resized, and set as a variable
     front_image_file = Image.open("front_image.jpg")
-    front_image_resized = front_image_file.resize((200,200))
+    front_image_resized = front_image_file.resize((290,193))
     front_image = ImageTk.PhotoImage(front_image_resized)
 
     # The image is now converted in to a label
@@ -80,7 +84,7 @@ def login_frame():
             else:
                 access_label.configure(text="Incorrect password.")
         else:
-            access_label.configure(text="Account does not exist")
+            access_label.configure(text="Account does not exist.")
 
     # This is how the user can leave the login frame
     def back_function():
@@ -193,7 +197,8 @@ def create_account_frame():
     password_entry.grid(row=2, column=1)
     valid_label.grid(row=3, column=1)
 
-# This is where the the user gets to when they login, they can choose options to add items to basket, view the basket or to logout
+# This is where the the user gets to when they login, 
+# they can choose options to add items to basket, view the basket or to logout
 def menu_frame():
     global menu_frame
 
@@ -270,10 +275,15 @@ def add_items_frame():
     quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     # Here are the labels created of the items so the user knows what they can order
+    items_label = Label(add_items_frame, text="Items")
     item_1_label = Label(add_items_frame, text=items[0])
     item_2_label = Label(add_items_frame, text=items[1])
     item_3_label = Label(add_items_frame, text=items[2])
     item_4_label = Label(add_items_frame, text=items[3])
+    item_5_label = Label(add_items_frame, text=items[4])
+    item_6_label = Label(add_items_frame, text=items[5])
+    item_7_label = Label(add_items_frame, text=items[6])
+    item_8_label = Label(add_items_frame, text=items[7])
 
     # Here are the comboboxes created so the user can select the items
     items_combobox = ttk.Combobox(add_items_frame, value=items)
@@ -287,25 +297,59 @@ def add_items_frame():
     remove_button = Button(add_items_frame, text="Remove", command=remove_function)
 
     # Here are the labels created to show the prices of the items
+    items_price_label = Label(add_items_frame, text="Price")
     item_1_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[0]))
     item_2_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[1]))
     item_3_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[2]))
     item_4_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[3]))
+    item_5_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[4]))
+    item_6_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[5]))
+    item_7_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[6]))
+    item_8_price_label = Label(add_items_frame, text="${:.2f}".format(item_prices[7]))
 
-    # Here are all the labels, comboboxes, and buttons called
-    item_1_label.grid(row=0, column=0)
-    item_2_label.grid(row=1, column=0)
-    item_3_label.grid(row=2, column=0)
-    item_4_label.grid(row=3, column=0)
-    items_combobox.grid(row=4, column=0)
-    add_button.grid(row=5, column=0)
-    back_button.grid(row=6, column=0)
-    item_1_price_label.grid(row=0, column=1)
-    item_2_price_label.grid(row=1, column=1)
-    item_3_price_label.grid(row=2, column=1)
-    item_4_price_label.grid(row=3, column=1)
-    quantity_combobox.grid(row=4, column=1)
-    remove_button.grid(row=5, column=1)
+    # Here are all the labels, comboboxes, and buttons displayed
+    column_0_widgets = [
+        items_label, 
+        item_1_label, 
+        item_2_label, 
+        item_3_label, 
+        item_4_label, 
+        item_5_label, 
+        item_6_label, 
+        item_7_label, 
+        item_8_label, 
+        items_combobox, 
+        add_button, 
+        back_button
+        ]
+    
+    column_1_widgets = [
+        items_price_label, 
+        item_1_price_label, 
+        item_2_price_label, 
+        item_3_price_label, 
+        item_4_price_label, 
+        item_5_price_label, 
+        item_6_price_label, 
+        item_7_price_label, 
+        item_8_price_label, 
+        quantity_combobox, 
+        remove_button
+        ]
+
+    i = 0
+    r = 0
+    for label in column_0_widgets:
+        column_0_widgets[i].grid(row=r, column=0)
+        i += 1
+        r += 1
+
+    i = 0
+    r = 0
+    for label in column_1_widgets:
+        column_1_widgets[i].grid(row=r, column=1)
+        i += 1
+        r += 1
 
 # This is where the user can view what they have ordered
 def view_basket_frame():
@@ -329,6 +373,7 @@ def view_basket_frame():
         order_state_label.configure(text="Order sent!")
 
     # This is where the totals are found
+    total_price = 0
     i = 0
     for item in items:
         item_total_prices[i] = item_quantities[i] * item_prices[i]
@@ -341,7 +386,20 @@ def view_basket_frame():
     item_2_label = Label(view_basket_frame, text=items[1])
     item_3_label = Label(view_basket_frame, text=items[2])
     item_4_label = Label(view_basket_frame, text=items[3])
-    item_labels = [item_1_label, item_2_label, item_3_label, item_4_label]
+    item_5_label = Label(view_basket_frame, text=items[4])
+    item_6_label = Label(view_basket_frame, text=items[5])
+    item_7_label = Label(view_basket_frame, text=items[6])
+    item_8_label = Label(view_basket_frame, text=items[7])
+    item_labels = [
+        item_1_label, 
+        item_2_label, 
+        item_3_label, 
+        item_4_label, 
+        item_5_label, 
+        item_6_label, 
+        item_7_label, 
+        item_8_label
+        ]
 
     # This is where the button is created to leave
     back_button = Button(view_basket_frame, text="Back", command=back_function)
@@ -353,7 +411,20 @@ def view_basket_frame():
     item_2_quantity_label = Label(view_basket_frame, text=f"{item_quantities[1]}")
     item_3_quantity_label = Label(view_basket_frame, text=f"{item_quantities[2]}")
     item_4_quantity_label = Label(view_basket_frame, text=f"{item_quantities[3]}")
-    item_quantity_labels = [item_1_quantity_label, item_2_quantity_label, item_3_quantity_label, item_4_quantity_label]
+    item_5_quantity_label = Label(view_basket_frame, text=f"{item_quantities[4]}")
+    item_6_quantity_label = Label(view_basket_frame, text=f"{item_quantities[5]}")
+    item_7_quantity_label = Label(view_basket_frame, text=f"{item_quantities[6]}")
+    item_8_quantity_label = Label(view_basket_frame, text=f"{item_quantities[7]}")
+    item_quantity_labels = [
+        item_1_quantity_label, 
+        item_2_quantity_label, 
+        item_3_quantity_label, 
+        item_4_quantity_label, 
+        item_5_quantity_label, 
+        item_6_quantity_label, 
+        item_7_quantity_label, 
+        item_8_quantity_label
+        ]
 
     # This is where the labels are created to show the price of each item
     price_label = Label(view_basket_frame, text="Price each")
@@ -361,7 +432,20 @@ def view_basket_frame():
     item_2_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[1]))
     item_3_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[2]))
     item_4_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[3]))
-    item_price_labels = [item_1_price_label, item_2_price_label, item_3_price_label, item_4_price_label]
+    item_5_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[4]))
+    item_6_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[5]))
+    item_7_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[6]))
+    item_8_price_label = Label(view_basket_frame, text="${:.2f}".format(item_prices[7]))
+    item_price_labels = [
+        item_1_price_label, 
+        item_2_price_label, 
+        item_3_price_label, 
+        item_4_price_label, 
+        item_5_price_label, 
+        item_6_price_label, 
+        item_7_price_label, 
+        item_8_price_label
+        ]
 
     # This is where the labels are created to show the total prices of each item
     total_prices_label = Label(view_basket_frame, text="Total Prices")
@@ -369,7 +453,20 @@ def view_basket_frame():
     item_2_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[1]))
     item_3_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[2]))
     item_4_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[3]))
-    item_total_price_labels = [item_1_total_price_label, item_2_total_price_label, item_3_total_price_label, item_4_total_price_label]
+    item_5_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[4]))
+    item_6_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[5]))
+    item_7_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[6]))
+    item_8_total_price_label = Label(view_basket_frame, text="${:.2f}".format(item_total_prices[7]))
+    item_total_price_labels = [
+        item_1_total_price_label, 
+        item_2_total_price_label, 
+        item_3_total_price_label, 
+        item_4_total_price_label, 
+        item_5_total_price_label, 
+        item_6_total_price_label, 
+        item_7_total_price_label, 
+        item_8_total_price_label
+        ]
 
     # This is where the label is created to show the total
     total_label = Label(view_basket_frame, text="Total:")
@@ -404,9 +501,11 @@ def view_basket_frame():
         else:
             i += 1
 
-# This is where program is called to make sure it can only be run through the terminal and not through another program for a safety measure.
+# This is where program is called to make sure it can only be run through the terminal 
+# and not through another program for a safety measure.
 if __name__ == "__main__":
-    # The menu frame is called incase through the usages of the program, the user wants to re-login after logging out
+    # The menu frame is called incase through the usages of the program, 
+    # the user wants to re-login after logging out
     menu_frame()
     main_frame()
 
