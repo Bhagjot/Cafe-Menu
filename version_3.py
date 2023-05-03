@@ -16,7 +16,7 @@ root = Tk()
 root.title("Cafe Menu")
 root.geometry("300x350")
 
-# These are the variables which store the quantity, price, and total_prices of each item
+# This list store the items avaible for sale
 items = [
     "Nachos", 
     "Quiches", 
@@ -27,6 +27,8 @@ items = [
     "Ice Tea", 
     "Slushies"
     ]
+
+# These are lists which store the quantities, prices and total prices for each item available for sale
 item_quantities = [0, 0, 0, 0, 0, 0, 0, 0]
 item_prices = [4.8, 4.8, 4.8, 5.8, 3.8, 3.5, 4.5, 2.5]
 item_total_prices = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -71,12 +73,10 @@ def login_frame():
     login_frame.grid()
     main_frame.grid_forget()
 
+    # This is where the image is resized to display on the login page
     profile_image_file = Image.open("profile_image.png")
     profile_image_resized = profile_image_file.resize((200,200))
     profile_image = ImageTk.PhotoImage(profile_image_resized)
-
-    profile_image_label = Label(login_frame, image=profile_image)
-    profile_image_label.image = profile_image
 
     # This is where the username is checked
     def login_function():
@@ -107,6 +107,10 @@ def login_frame():
         root.title("Cafe Menu")
         main_frame.grid()
         login_frame.grid_forget()
+
+    # This is where the image in converted into a label
+    profile_image_label = Label(login_frame, image=profile_image)
+    profile_image_label.image = profile_image
 
     # This is where the Labels are created for the user to see where to input
     username_label = Label(login_frame, text="Username")
@@ -140,6 +144,11 @@ def create_account_frame():
     create_account_frame = Frame(root)
     create_account_frame.grid()
     main_frame.grid_forget()
+
+    # This is where the profile image is resized
+    profile_image_file = Image.open("profile_image.png")
+    profile_image_resized = profile_image_file.resize((200,200))
+    profile_image = ImageTk.PhotoImage(profile_image_resized)
 
     def create_account_function():
         global accounts
@@ -197,6 +206,10 @@ def create_account_frame():
         main_frame.grid()
         create_account_frame.grid_forget()
 
+    # This is where the profile image is converted into a label
+    profile_image_label = Label(create_account_frame, image=profile_image)
+    profile_image_label.image = profile_image
+
     # These are the labels which help indentify where the user should input
     age_label = Label(create_account_frame, text="Age")
     username_label = Label(create_account_frame, text="Username")
@@ -213,15 +226,16 @@ def create_account_frame():
     password_entry = Entry(create_account_frame)
 
     # This is where all the labels, buttons and entries are called
-    age_label.grid(row=0, column=0)
-    username_label.grid(row=1, column=0)
-    password_label.grid(row=2, column=0)
-    create_button.grid(row=3, column=0)
-    back_button.grid(row=4, column=0)
-    age_entry.grid(row=0, column=1)
-    username_entry.grid(row=1, column=1)
-    password_entry.grid(row=2, column=1)
-    valid_label.grid(row=3, column=1, columnspan=2)
+    profile_image_label.grid(row=0, column=0, columnspan=2)
+    age_label.grid(row=1, column=0)
+    username_label.grid(row=2, column=0)
+    password_label.grid(row=3, column=0)
+    create_button.grid(row=4, column=0)
+    back_button.grid(row=5, column=0)
+    age_entry.grid(row=1, column=1)
+    username_entry.grid(row=2, column=1)
+    password_entry.grid(row=3, column=1)
+    valid_label.grid(row=4, column=1, columnspan=2)
 
 # This is where the the user gets to when they login, 
 # they can choose options to add items to basket, view the basket or to logout
@@ -239,10 +253,12 @@ def menu_frame_function():
         main_frame.grid()
         menu_frame.grid_forget()
 
+    # This is where the menu image is resized
     menu_image_file = Image.open("menu_image.jpg")
     menu_image_resized = menu_image_file.resize((208,117))
     menu_image = ImageTk.PhotoImage(menu_image_resized)
 
+    # This is where teh menu image in covnerted into a label
     menu_image_label = Label(menu_frame, image=menu_image)
     menu_image_label.image = menu_image
 
@@ -350,50 +366,31 @@ def add_items_frame_function():
     # Here the label for informing the user about their actions is created
     inform_label = Label(add_items_frame)
 
-    # Here are all the labels, comboboxes, and buttons displayed
-    column_0_widgets = [
-        items_label, 
-        item_1_label, 
-        item_2_label, 
-        item_3_label, 
-        item_4_label, 
-        item_5_label, 
-        item_6_label, 
-        item_7_label, 
-        item_8_label, 
-        items_combobox, 
-        add_button, 
-        back_button
-        ]
-    
-    column_1_widgets = [
-        items_price_label, 
-        item_1_price_label, 
-        item_2_price_label, 
-        item_3_price_label, 
-        item_4_price_label, 
-        item_5_price_label, 
-        item_6_price_label, 
-        item_7_price_label, 
-        item_8_price_label, 
-        quantity_combobox, 
-        remove_button,
-        inform_label
-        ]
-
-    i = 0
-    r = 0
-    for label in column_0_widgets:
-        column_0_widgets[i].grid(row=r, column=0)
-        i += 1
-        r += 1
-
-    i = 0
-    r = 0
-    for label in column_1_widgets:
-        column_1_widgets[i].grid(row=r, column=1)
-        i += 1
-        r += 1
+    # Here all the labels are displayed
+    items_label.grid(row=0, column=0) 
+    item_1_label.grid(row=1, column=0) 
+    item_2_label.grid(row=2, column=0) 
+    item_3_label.grid(row=3, column=0) 
+    item_4_label.grid(row=4, column=0) 
+    item_5_label.grid(row=5, column=0) 
+    item_6_label.grid(row=6, column=0) 
+    item_7_label.grid(row=7, column=0) 
+    item_8_label.grid(row=8, column=0) 
+    items_combobox.grid(row=9, column=0) 
+    add_button.grid(row=10, column=0) 
+    back_button.grid(row=11, column=0)
+    items_price_label.grid(row=0, column=1) 
+    item_1_price_label.grid(row=1, column=1) 
+    item_2_price_label.grid(row=2, column=1) 
+    item_3_price_label.grid(row=3, column=1) 
+    item_4_price_label.grid(row=4, column=1) 
+    item_5_price_label.grid(row=5, column=1) 
+    item_6_price_label.grid(row=6, column=1) 
+    item_7_price_label.grid(row=7, column=1) 
+    item_8_price_label.grid(row=8, column=1) 
+    quantity_combobox.grid(row=9, column=1) 
+    remove_button.grid(row=10, column=1)
+    inform_label.grid(row=11, column=1)
 
 # This is where the user can view what they have ordered
 def view_basket_frame_function():
