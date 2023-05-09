@@ -230,7 +230,7 @@ def add_items_frame():
         elif items_combobox.get() == "Sushi":
             sushi += int(quantity_combobox.get())
 
-    # This is where the user can remove items from the list so they do not order anything on accident
+    # This is where the user can remove items from the list
     def remove_function():
         global nachos
         global quiches
@@ -278,9 +278,9 @@ def add_items_frame():
     items_combobox = ttk.Combobox(add_items_frame, value=items)
     items_combobox.set("Select an item")
     quantity_combobox = ttk.Combobox(add_items_frame, value=quantity)
-    quantity_combobox.set("Select an amount")
+    quantity_combobox.set("Select quantity")
 
-    # Here are the buttons created so the user can submite their order or leave
+    # Here are the buttons created so the user can submit their order or leave
     add_button = Button(add_items_frame, text="Add", command=add_function)
     back_button = Button(add_items_frame, text="Back", command=back_function)
     remove_button = Button(add_items_frame, text="Remove", command=remove_function)
