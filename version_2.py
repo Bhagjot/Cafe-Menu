@@ -216,19 +216,22 @@ def add_items_frame():
         global quiches
         global chicken_burgers
         global sushi
+        while True:
+            try:
+                # This is where the program checks what is selected and adds the quantity
+                if items_combobox.get() == "Nachos":
+                    nachos += int(quantity_combobox.get())
 
-        # This is where the program checks what is selected and adds the quantity
-        if items_combobox.get() == "Nachos":
-            nachos += int(quantity_combobox.get())
-
-        elif items_combobox.get() == "Quiches":
-            quiches += int(quantity_combobox.get())
-        
-        elif items_combobox.get() == "Chicken Burgers":
-            chicken_burgers += int(quantity_combobox.get())
-        
-        elif items_combobox.get() == "Sushi":
-            sushi += int(quantity_combobox.get())
+                elif items_combobox.get() == "Quiches":
+                    quiches += int(quantity_combobox.get())
+                
+                elif items_combobox.get() == "Chicken Burgers":
+                    chicken_burgers += int(quantity_combobox.get())
+                
+                elif items_combobox.get() == "Sushi":
+                    sushi += int(quantity_combobox.get())
+            except ValueError:
+                break
 
     # This is where the user can remove items from the list
     def remove_function():
