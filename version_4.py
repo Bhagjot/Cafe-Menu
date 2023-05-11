@@ -278,7 +278,7 @@ def options_function():
     global options_frame
 
     # This is where the menu frame is created
-    root.title("Menu")
+    root.title("Options")
     options_frame = Frame(root)
     options_frame.grid()
     options_frame.configure(bg="#ffffff")
@@ -299,7 +299,7 @@ def options_function():
     menu_image_label.image = menu_image
 
     # These are the option buttons being created
-    add_items_button = Button(
+    menu_button = Button(
         options_frame, 
         text="View Menu",
         fg="#ffffff", 
@@ -323,7 +323,7 @@ def options_function():
 
     # This is where all the labels and buttons are called
     menu_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    add_items_button.grid(row=1, column=0, padx=5, pady=5)
+    menu_button.grid(row=1, column=0, padx=5, pady=5)
     view_basket_button.grid(row=1, column=1, padx=5, pady=5)
 
 # This is where the user can add items to their basket
