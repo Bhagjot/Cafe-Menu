@@ -299,42 +299,38 @@ def add_items_frame_function():
     def add_function():
         global items
         global item_quantities
-
-        while True:
-            try:
-                # This is where the program checks what is selected and adds the quantity
-                i = 0
-                for item_for_sale in items:
-                    quantity = int(quantity_combobox.get())
-                    if items_combobox.get() == item_for_sale:
-                        item_quantities[i] += quantity
-                        inform_label.configure(text=f"{quantity} {item_for_sale} added.")
-                    else:
-                        i += 1
-            except ValueError:
-                break
+        try:
+            # This is where the program checks what is selected and adds the quantity
+            i = 0
+            for item_for_sale in items:
+                quantity = int(quantity_combobox.get())
+                if items_combobox.get() == item_for_sale:
+                    item_quantities[i] += quantity
+                    inform_label.configure(text=f"{quantity} {item_for_sale} added.")
+                else:
+                    i += 1
+        except ValueError:
+            inform_label.configure(text="Please choose quantity")
 
     # This is when the user can remove items from the basket
     def remove_function():
         global items
         global item_quantities
-
-        while True:
-            try:
-                # This is where the program checks what was selected and substracts the quantity
-                i = 0
-                for item_for_sale in items:
-                    quantity = int(quantity_combobox.get())
-                    if items_combobox.get() == item_for_sale:
-                        item_quantities[i] -= quantity
-                        inform_label.configure(text=f"{quantity} {item_for_sale} removed.")
-                        # If the quantity is negative, it is changed to zero
-                        if item_quantities[i] < 0:
-                            item_quantities[i] = 0
-                    else:
-                        i += 1
-            except ValueError:
-                break
+        try:
+            # This is where the program checks what was selected and substracts the quantity
+            i = 0
+            for item_for_sale in items:
+                quantity = int(quantity_combobox.get())
+                if items_combobox.get() == item_for_sale:
+                    item_quantities[i] -= quantity
+                    inform_label.configure(text=f"{quantity} {item_for_sale} removed.")
+                    # If the quantity is negative, it is changed to zero
+                    if item_quantities[i] < 0:
+                        item_quantities[i] = 0
+                else:
+                    i += 1
+        except ValueError:
+            inform_label.configure(text="Please choose quantity")
 
     # This is where the user can leave the add to basket frame
     def back_function():

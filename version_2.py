@@ -216,22 +216,21 @@ def add_items_frame():
         global quiches
         global chicken_burgers
         global sushi
-        while True:
-            try:
-                # This is where the program checks what is selected and adds the quantity
-                if items_combobox.get() == "Nachos":
-                    nachos += int(quantity_combobox.get())
+        try:
+            # This is where the program checks what is selected and adds the quantity
+            if items_combobox.get() == "Nachos":
+                nachos += int(quantity_combobox.get())
 
-                elif items_combobox.get() == "Quiches":
-                    quiches += int(quantity_combobox.get())
+            elif items_combobox.get() == "Quiches":
+                quiches += int(quantity_combobox.get())
                 
-                elif items_combobox.get() == "Chicken Burgers":
+            elif items_combobox.get() == "Chicken Burgers":
                     chicken_burgers += int(quantity_combobox.get())
                 
-                elif items_combobox.get() == "Sushi":
-                    sushi += int(quantity_combobox.get())
-            except ValueError:
-                break
+            elif items_combobox.get() == "Sushi":
+                sushi += int(quantity_combobox.get())
+        except ValueError:
+            pass
 
     # This is where the user can remove items from the list
     def remove_function():
@@ -239,27 +238,29 @@ def add_items_frame():
         global quiches
         global chicken_burgers
         global sushi
+        try:
+            # This is where the program checks what was selected and substracts the quantity, if the item goes into negatives it changes it to zero
+            if items_combobox.get() == "Nachos":
+                nachos -= int(quantity_combobox.get())
+                if nachos < 0:
+                    nachos = 0
 
-        # This is where the program checks what was selected and substracts the quantity, if the item goes into negatives it changes it to zero
-        if items_combobox.get() == "Nachos":
-            nachos -= int(quantity_combobox.get())
-            if nachos < 0:
-                nachos = 0
-
-        elif items_combobox.get() == "Quiches":
-            quiches -= int(quantity_combobox.get())
-            if quiches < 0:
-                quiches = 0
-        
-        elif items_combobox.get() == "Chicken Burgers":
-            chicken_burgers -= int(quantity_combobox.get())
-            if chicken_burgers < 0:
-                chicken_burgers = 0
-        
-        elif items_combobox.get() == "Sushi":
-            sushi -= int(quantity_combobox.get())
-            if sushi < 0:
-                sushi = 0
+            elif items_combobox.get() == "Quiches":
+                quiches -= int(quantity_combobox.get())
+                if quiches < 0:
+                    quiches = 0
+            
+            elif items_combobox.get() == "Chicken Burgers":
+                chicken_burgers -= int(quantity_combobox.get())
+                if chicken_burgers < 0:
+                    chicken_burgers = 0
+            
+            elif items_combobox.get() == "Sushi":
+                sushi -= int(quantity_combobox.get())
+                if sushi < 0:
+                    sushi = 0
+        except ValueError:
+            pass
 
     # This is where the user can leave the add to basket frame
     def back_function():
