@@ -51,10 +51,10 @@ def main_function():
     create_account_button = Button(main_frame, text="Create Account", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=15, command=create_account_function)
 
     # All the labels and buttons are called here
-    front_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    welcome_message.grid(row=1, column=0, columnspan=2, padx=5, pady=5)
-    login_button.grid(row=2, column=0, padx=5, pady=5)
-    create_account_button.grid(row=2, column=1, padx=5, pady=5)
+    front_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=15)
+    welcome_message.grid(row=1, column=0, columnspan=2, padx=5, pady=15)
+    login_button.grid(row=2, column=0, padx=5, pady=15)
+    create_account_button.grid(row=2, column=1, padx=5, pady=15)
 
 # This is the how the user can login
 def login_function():
@@ -104,7 +104,7 @@ def login_function():
     password_entry = Entry(login_frame, show="*", bg="#ffffff", width=20)
 
     # These are the buttons to submit or leave
-    login_button = Button(login_frame, text="Login", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=17, command=login_button_function)
+    login_button = Button(login_frame, text="Login", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=17, command=login_button_function)
     
     create_account_button = Button(
         login_frame, 
@@ -112,19 +112,20 @@ def login_function():
         fg="#ffffff", 
         bg="#55c2da", 
         font=("Helvetica", 10, "bold"), 
+        height=2, 
         width=17, 
         command=create_account_button_function
         )
 
     # Here all the labels, entries and buttons are called
-    profile_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    username_label.grid(row=1, column=0, padx=5, pady=5)
-    password_label.grid(row=2, column=0, padx=5, pady=5)
-    create_account_button.grid(row=3, column=0, padx=5, pady=5)
-    access_label.grid(row=4, column=0, columnspan=2, padx=5, pady=5)
-    username_entry.grid(row=1, column=1, padx=5, pady=5)
-    password_entry.grid(row=2, column=1, padx=5, pady=5)
-    login_button.grid(row=3, column=1, padx=5, pady=5)
+    profile_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=20)
+    username_label.grid(row=1, column=0, padx=5, pady=20)
+    password_label.grid(row=2, column=0, padx=5, pady=20)
+    create_account_button.grid(row=3, column=0, padx=5, pady=15)
+    access_label.grid(row=4, column=0, columnspan=2, padx=5)
+    username_entry.grid(row=1, column=1, padx=5, pady=20)
+    password_entry.grid(row=2, column=1, padx=5, pady=20)
+    login_button.grid(row=3, column=1, padx=5, pady=15)
 
 # This is where the user can create their account
 def create_account_function():
@@ -194,9 +195,8 @@ def create_account_function():
     valid_label = Label(create_account_frame, bg="#ffffff", font=10)
 
     # These are the buttons where the user can submit or leave
-    create_button = Button(create_account_frame, text="Create",fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=17,  command=create_button_function)
-    
-    login_button = Button(create_account_frame, text="Go to login",fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=17,  command=login_button_function)
+    create_button = Button(create_account_frame, text="Create",fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=17,  command=create_button_function)
+    login_button = Button(create_account_frame, text="Go to login",fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=17,  command=login_button_function)
 
     # These are the entries where the user can input
     age_entry = Entry(create_account_frame, bg="#ffffff", width=20)
@@ -204,16 +204,16 @@ def create_account_function():
     password_entry = Entry(create_account_frame, bg="#ffffff", width=20)
 
     # This is where all the labels, buttons and entries are called
-    profile_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    age_label.grid(row=1, column=0, padx=5, pady=5)
-    username_label.grid(row=2, column=0, padx=5, pady=5)
-    password_label.grid(row=3, column=0, padx=5, pady=5)
-    login_button.grid(row=4, column=0, padx=5, pady=5)
-    valid_label.grid(row=5, column=0, columnspan=2, padx=5, pady=5)
-    age_entry.grid(row=1, column=1, padx=5, pady=5)
-    username_entry.grid(row=2, column=1, padx=5, pady=5)
-    password_entry.grid(row=3, column=1, padx=5, pady=5)
-    create_button.grid(row=4, column=1, padx=5, pady=5)
+    profile_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=15)
+    age_label.grid(row=1, column=0, padx=5, pady=15)
+    username_label.grid(row=2, column=0, padx=5, pady=15)
+    password_label.grid(row=3, column=0, padx=5, pady=15)
+    login_button.grid(row=4, column=0, padx=5, pady=10)
+    valid_label.grid(row=5, column=0, columnspan=2, padx=5)
+    age_entry.grid(row=1, column=1, padx=5, pady=15)
+    username_entry.grid(row=2, column=1, padx=5, pady=15)
+    password_entry.grid(row=3, column=1, padx=5, pady=15)
+    create_button.grid(row=4, column=1, padx=5, pady=10)
 
 # This is where the the user gets to when they login, 
 # they can choose options to add items to basket, view the basket or to logout
@@ -248,9 +248,9 @@ def options_function():
     view_basket_button = Button(options_frame, text="View basket",fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=15,  command=view_basket_button_function)
 
     # This is where all the labels and buttons are called
-    menu_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    menu_button.grid(row=1, column=0, padx=5, pady=5)
-    view_basket_button.grid(row=1, column=1, padx=5, pady=5)
+    menu_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=30)
+    menu_button.grid(row=1, column=0, padx=5, pady=30)
+    view_basket_button.grid(row=1, column=1, padx=5, pady=30)
 
 # This is where the user can add items to their basket
 def menu_function():
@@ -264,7 +264,7 @@ def menu_function():
     menu_frame = Frame(root)
     menu_frame.grid()
     menu_frame.configure(bg="#ffffff")
-    root.geometry("315x650")
+    root.geometry("340x680")
 
     # This is when the user clicks the add button
     def add_button_function(i):
@@ -390,8 +390,8 @@ def menu_function():
     item_8_add_button.grid(row=16, column=1, padx=10, pady=5) 
     # back button and inform label is displayed
     title_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    back_button.grid(row=17, column=0, padx=5, pady=5)
-    inform_label.grid(row=17, column=1, padx=5, pady=5)
+    back_button.grid(row=17, column=0, padx=5, pady=15)
+    inform_label.grid(row=17, column=1, columnspan=2, padx=5, pady=15)
 
 # This is where the user can view what they have ordered
 def basket_function():
@@ -406,11 +406,11 @@ def basket_function():
     basket_frame = Frame(root)
     basket_frame.grid()
     basket_frame.configure(bg="#ffffff")
-    root.geometry("400x400")
+    root.geometry("500x500")
 
     # This is the function which allows the user to leave
     def menu_button_function():
-        root.geometry("315x650")
+        root.geometry("330x680")
         menu_function()
         basket_frame.grid_forget()
 
@@ -564,12 +564,12 @@ def basket_function():
     items_label.grid(row=0, column=0, padx=5, pady=5)
     add_items_button.grid(row=9, column=0, padx=5, pady=5)
     quantity_label.grid(row=0, column=1, padx=5, pady=5)
-    order_button.grid(row=9, column=1, padx=5, pady=5)
+    order_button.grid(row=10, column=0, padx=5, pady=5)
     price_label.grid(row=0, column=2, padx=5, pady=5)
     total_label.grid(row=9, column=2, padx=5, pady=5)
     total_prices_label.grid(row=0, column=3, padx=5, pady=5)
     total_price_label.grid(row=9, column=3, padx=5, pady=5)
-    update_button.grid(row=10, column=0)
+    update_button.grid(row=9, column=1, padx=5, pady=5)
 
 # This is where the program only displays the item if the item was ordered
     i = 0
