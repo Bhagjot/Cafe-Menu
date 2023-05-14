@@ -399,6 +399,7 @@ def basket_function():
     global basket_frame
     global total_price
     global items
+    global item_quantities
 
     # This is where the frame is created for the user to view what they have ordered
     root.title("Basket")
@@ -418,6 +419,17 @@ def basket_function():
             messagebox.showinfo(title="Order status", message="Order sent!")
         else:
             messagebox.showinfo(title="Order status", message="You have not ordered anything.")
+        
+    def update_button_function():
+        i = 0
+        for item in item_values:
+            try:
+                item_quantities[i] = int(item.get())
+                i += 1
+            except ValueError:
+                i += 1
+        basket_frame.grid_forget()
+        basket_function()
 
     # This is where the totals are found
     total_price = 0
@@ -442,29 +454,62 @@ def basket_function():
 
     # This is where the button is created to leave
     add_items_button = Button(basket_frame, text="Menu", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=5,command=menu_button_function)
-    
     order_button = Button(basket_frame, text="Order", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=5, command=order_button_function)
+    update_button = Button(basket_frame, text="Update", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=5, command=update_button_function)
 
     # This is where the labels are created to show the quantity of each item
     quantity_label = Label(basket_frame, text="Quantity", bg="#ffffff", font=10)
-    item_1_quantity_label = Label(basket_frame, text=f"{item_quantities[0]}", bg="#ffffff")
-    item_2_quantity_label = Label(basket_frame, text=f"{item_quantities[1]}", bg="#ffffff")
-    item_3_quantity_label = Label(basket_frame, text=f"{item_quantities[2]}", bg="#ffffff")
-    item_4_quantity_label = Label(basket_frame, text=f"{item_quantities[3]}", bg="#ffffff")
-    item_5_quantity_label = Label(basket_frame, text=f"{item_quantities[4]}", bg="#ffffff")
-    item_6_quantity_label = Label(basket_frame, text=f"{item_quantities[5]}", bg="#ffffff")
-    item_7_quantity_label = Label(basket_frame, text=f"{item_quantities[6]}", bg="#ffffff")
-    item_8_quantity_label = Label(basket_frame, text=f"{item_quantities[7]}", bg="#ffffff")
+
+    # This where the variables are created which set the default value of the spinbox
+    item_1_quantity = StringVar()
+    item_2_quantity = StringVar()
+    item_3_quantity = StringVar()
+    item_4_quantity = StringVar()
+    item_5_quantity = StringVar()
+    item_6_quantity = StringVar()
+    item_7_quantity = StringVar()
+    item_8_quantity = StringVar()
+
+    item_values = [
+        item_1_quantity, 
+        item_2_quantity, 
+        item_3_quantity, 
+        item_4_quantity, 
+        item_5_quantity, 
+        item_6_quantity, 
+        item_7_quantity, 
+        item_8_quantity
+        ]
+
+    # This is where the spinboxes are created
+    item_1_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_1_quantity)
+    item_2_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_2_quantity)
+    item_3_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_3_quantity)
+    item_4_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_4_quantity)
+    item_5_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_5_quantity)
+    item_6_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_6_quantity)
+    item_7_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_7_quantity)
+    item_8_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_8_quantity)
+
+    # This is where the default values of teh spinboxes are set
+    item_1_quantity.set(item_quantities[0])
+    item_2_quantity.set(item_quantities[1])
+    item_3_quantity.set(item_quantities[2])
+    item_4_quantity.set(item_quantities[3])
+    item_5_quantity.set(item_quantities[4])
+    item_6_quantity.set(item_quantities[5])
+    item_7_quantity.set(item_quantities[6])
+    item_8_quantity.set(item_quantities[7])
     
-    item_quantity_labels = [
-        item_1_quantity_label, 
-        item_2_quantity_label, 
-        item_3_quantity_label, 
-        item_4_quantity_label, 
-        item_5_quantity_label, 
-        item_6_quantity_label, 
-        item_7_quantity_label, 
-        item_8_quantity_label
+    item_quantity_spinboxes = [
+        item_1_quantity_spinbox, 
+        item_2_quantity_spinbox, 
+        item_3_quantity_spinbox, 
+        item_4_quantity_spinbox, 
+        item_5_quantity_spinbox, 
+        item_6_quantity_spinbox, 
+        item_7_quantity_spinbox, 
+        item_8_quantity_spinbox
         ]
 
     # This is where the labels are created to show the price of each item
@@ -524,6 +569,7 @@ def basket_function():
     total_label.grid(row=9, column=2, padx=5, pady=5)
     total_prices_label.grid(row=0, column=3, padx=5, pady=5)
     total_price_label.grid(row=9, column=3, padx=5, pady=5)
+    update_button.grid(row=10, column=0)
 
 # This is where the program only displays the item if the item was ordered
     i = 0
@@ -531,8 +577,8 @@ def basket_function():
     r = 1
     for item in items:
         if item_quantities[i] > 0:
-            item_labels[i].grid(row=r, column=c, padx=5, pady=5)
-            item_quantity_labels[i].grid(row=r, column=(c+1), padx=5, pady=5)
+            item_labels[i].grid(row=r, column=c, padx=5, pady=5, sticky=W)
+            item_quantity_spinboxes[i].grid(row=r, column=(c+1), padx=5, pady=5)
             item_price_labels[i].grid(row=r, column=(c+2), padx=5, pady=5)
             item_total_price_labels[i].grid(row=r, column=(c+3), padx=5, pady=5)
             i += 1
