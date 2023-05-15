@@ -204,16 +204,16 @@ def create_account_function():
     password_entry = Entry(create_account_frame, bg="#ffffff", width=20)
 
     # This is where all the labels, buttons and entries are called
-    profile_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=15)
+    profile_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=10)
     age_label.grid(row=1, column=0, padx=5, pady=15)
     username_label.grid(row=2, column=0, padx=5, pady=15)
     password_label.grid(row=3, column=0, padx=5, pady=15)
-    login_button.grid(row=4, column=0, padx=5, pady=10)
+    login_button.grid(row=4, column=0, padx=5, pady=5)
     valid_label.grid(row=5, column=0, columnspan=2, padx=5)
     age_entry.grid(row=1, column=1, padx=5, pady=15)
     username_entry.grid(row=2, column=1, padx=5, pady=15)
     password_entry.grid(row=3, column=1, padx=5, pady=15)
-    create_button.grid(row=4, column=1, padx=5, pady=10)
+    create_button.grid(row=4, column=1, padx=5, pady=5)
 
 # This is where the the user gets to when they login, 
 # they can choose options to add items to basket, view the basket or to logout
@@ -415,6 +415,7 @@ def basket_function():
         basket_frame.grid_forget()
 
     def order_button_function():
+        update_button_function()
         if total_price > 0:
             messagebox.showinfo(title="Order status", message="Order sent!")
         else:
@@ -427,7 +428,9 @@ def basket_function():
                 item_quantities[i] = int(item.get())
                 i += 1
             except ValueError:
+                item_quantities[i] = 0
                 i += 1
+
         basket_frame.grid_forget()
         basket_function()
 
