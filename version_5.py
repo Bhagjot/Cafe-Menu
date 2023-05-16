@@ -34,9 +34,10 @@ def main_function():
     main_frame.grid()
     main_frame.configure(bg="#ffffff")
 
-    # The froint image and welcome message labels are created
-    front_image_label = Label(main_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("front_image.jpg")))
-    front_image_label.image = ImageTk.PhotoImage(Image.open("front_image.jpg"))
+    # The front image and welcome message labels are created
+    main_image = ImageTk.PhotoImage(Image.open("main_image.jpg"))
+    main_image_label = Label(main_frame, bg="#ffffff", image=main_image)
+    main_image_label.image = main_image
     welcome_message_label = Label(main_frame, text="Welcome to the Cafe Menu application!", font=("Helvetica", 12, "bold"), bg="#ffffff")
     
     # Login and create account buttons are created
@@ -44,7 +45,7 @@ def main_function():
     create_account_button = Button(main_frame, text="Create Account", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=15, command=create_account_function)
 
     # All labels and buttons are displayed
-    front_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=15)
+    main_image_label.grid(row=0, column=0, columnspan=2, padx=5, pady=15)
     welcome_message_label.grid(row=1, column=0, columnspan=2, padx=5, pady=15)
     login_button.grid(row=2, column=0, padx=5, pady=15)
     create_account_button.grid(row=2, column=1, padx=5, pady=15)
@@ -81,8 +82,9 @@ def login_function():
         login_frame.grid_forget()
     
     # Profile image, username, password and access labels are created
-    profile_image_label = Label(login_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("login_image.png")))
-    profile_image_label.image = ImageTk.PhotoImage(Image.open("login_image.png"))
+    profile_image = ImageTk.PhotoImage(Image.open("login_image.png"))
+    profile_image_label = Label(login_frame, bg="#ffffff", image=profile_image)
+    profile_image_label.image = profile_image
     username_label = Label(login_frame, text="Username", bg="#ffffff", font=10)
     password_label = Label(login_frame, text="Password", bg="#ffffff", font=10)
     access_label = Label(login_frame, bg="#ffffff", font=10)
@@ -171,8 +173,9 @@ def create_account_function():
         create_account_frame.grid_forget()
 
     # Profile image, age, username, password, and valid labels are created
-    profile_image_label = Label(create_account_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("login_image.png")))
-    profile_image_label.image = ImageTk.PhotoImage(Image.open("login_image.png"))
+    profile_image = ImageTk.PhotoImage(Image.open("login_image.png"))
+    profile_image_label = Label(create_account_frame, bg="#ffffff", image=profile_image)
+    profile_image_label.image = profile_image
     age_label = Label(create_account_frame, text="Age", bg="#ffffff", font=10)
     username_label = Label(create_account_frame, text="Username", bg="#ffffff", font=10)
     password_label = Label(create_account_frame, text="Password", bg="#ffffff", font=10)
@@ -221,8 +224,9 @@ def options_function():
         options_frame.grid_forget()
 
     # Menu image label is created
-    options_image_label = Label(options_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("options_image.jpg")))
-    options_image_label.image = ImageTk.PhotoImage(Image.open("options_image.jpg"))
+    options_image = ImageTk.PhotoImage(Image.open("options_image.jpg"))
+    options_image_label = Label(options_frame, bg="#ffffff", image=options_image)
+    options_image_label.image = options_image
 
     # View menu and view basket buttons are created
     view_menu_button = Button(options_frame, text="View Menu",fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), height=2, width=15,  command=view_menu_button_function)
@@ -261,29 +265,37 @@ def menu_function():
     quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     # All image labels are created
-    item_1_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("nachos_image.jpg")))
-    item_1_image_label.image = ImageTk.PhotoImage(Image.open("nachos_image.jpg"))
+    item_1_image = ImageTk.PhotoImage(Image.open("nachos_image.jpg"))
+    item_1_image_label = Label(menu_frame, bg="#ffffff", image=item_1_image)
+    item_1_image_label.image = item_1_image
     
-    item_2_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("quiches_image.jpg")))
-    item_2_image_label.image = ImageTk.PhotoImage(Image.open("quiches_image.jpg"))
+    item_2_image = ImageTk.PhotoImage(Image.open("quiches_image.jpg"))
+    item_2_image_label = Label(menu_frame, bg="#ffffff", image=item_2_image)
+    item_2_image_label.image = item_2_image
     
-    item_3_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("chicken_burger_image.jpg")))
-    item_3_image_label.image = ImageTk.PhotoImage(Image.open("chicken_burger_image.jpg"))
+    item_3_image = ImageTk.PhotoImage(Image.open("chicken_burger_image.jpg"))
+    item_3_image_label = Label(menu_frame, bg="#ffffff", image=item_3_image)
+    item_3_image_label.image = item_3_image
     
-    item_4_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("sushi_image.jpg")))
-    item_4_image_label.image = ImageTk.PhotoImage(Image.open("sushi_image.jpg"))
+    item_4_image = ImageTk.PhotoImage(Image.open("sushi_image.jpg"))
+    item_4_image_label = Label(menu_frame, bg="#ffffff", image=item_4_image)
+    item_4_image_label.image = item_4_image
     
-    item_5_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("pizza_image.jpg")))
-    item_5_image_label.image = ImageTk.PhotoImage(Image.open("pizza_image.jpg"))
+    item_5_image = ImageTk.PhotoImage(Image.open("pizza_image.jpg"))
+    item_5_image_label = Label(menu_frame, bg="#ffffff", image=item_5_image)
+    item_5_image_label.image = item_5_image
     
-    item_6_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("water_image.jpg")))
-    item_6_image_label.image = ImageTk.PhotoImage(Image.open("water_image.jpg"))
+    item_6_image = ImageTk.PhotoImage(Image.open("water_image.jpg"))
+    item_6_image_label = Label(menu_frame, bg="#ffffff", image=item_6_image)
+    item_6_image_label.image = item_6_image
     
-    item_7_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("ice_tea_image.jpg")))
-    item_7_image_label.image = ImageTk.PhotoImage(Image.open("ice_tea_image.jpg"))
+    item_7_image = ImageTk.PhotoImage(Image.open("ice_tea_image.jpg"))
+    item_7_image_label = Label(menu_frame, bg="#ffffff", image=item_7_image)
+    item_7_image_label.image = item_7_image
     
-    item_8_image_label = Label(menu_frame, bg="#ffffff", image=ImageTk.PhotoImage(Image.open("slushy_image.jpg")))
-    item_8_image_label.image = ImageTk.PhotoImage(Image.open("slushy_image.jpg"))
+    item_8_image = ImageTk.PhotoImage(Image.open("slushy_image.jpg"))
+    item_8_image_label = Label(menu_frame, bg="#ffffff", image=item_8_image)
+    item_8_image_label.image = item_8_image
 
     # All item name labels are created
     item_1_label = Label(menu_frame, text=items[0], bg="#ffffff")
