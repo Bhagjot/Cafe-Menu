@@ -9,8 +9,11 @@ from PIL import Image, ImageTk
 import json
 
 # If the external file is not present, it is created, else it is simply read
-json.dump({}, open("accounts.json", "w"), indent=4)
-accounts = json.load(open("accounts.json", "r"))
+try:
+    accounts = json.load(open("accounts.json", "r"))
+except FileNotFoundError:
+    json.dump({}, open("accounts.json", "w"), indent=4)
+    accounts = json.load(open("accounts.json", "r"))
 
 # The main widget is created with a set size and color
 root = Tk()
