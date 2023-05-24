@@ -320,8 +320,9 @@ def menu_function():
     item_7_price_label = Label(menu_frame, text="${:.2f}".format(item_prices[6]), bg="#ffffff")
     item_8_price_label = Label(menu_frame, text="${:.2f}".format(item_prices[7]), bg="#ffffff")
  
-    # Title and inform labels are created
+    # Title, message and inform labels are created
     title_label = Label(menu_frame, bg="#ffffff", text="Cafe Menu", font=("Helvetica", 12, "bold"))
+    message_label = Label(menu_frame, bg="#ffffff", text="Press button again to add more.")
     inform_label = Label(menu_frame, bg="#ffffff")
 
     # Here are the comboboxes created so the user can select the items
@@ -342,49 +343,50 @@ def menu_function():
     view_basket_button = Button(menu_frame, text="View Basket", fg="#ffffff", bg="#55c2da", font=("Helvetica", 10, "bold"), width=15, command=view_basket_button_function)
 
     # Item 1 labels and buttons are displayed
-    item_1_image_label.grid(row=1, column=0, padx=10, pady=5)
-    item_1_label.grid(row=2, column=0) 
-    item_1_price_label.grid(row=3, column=0) 
-    item_1_add_button.grid(row=4, column=0, padx=10, pady=5) 
+    item_1_image_label.grid(row=2, column=0, padx=10, pady=5)
+    item_1_label.grid(row=3, column=0) 
+    item_1_price_label.grid(row=4, column=0) 
+    item_1_add_button.grid(row=5, column=0, padx=10, pady=5) 
     # Item 2 labels and buttons are displayed
-    item_2_image_label.grid(row=5, column=0, padx=10, pady=5)
-    item_2_label.grid(row=6, column=0) 
-    item_2_price_label.grid(row=7, column=0) 
-    item_2_add_button.grid(row=8, column=0, padx=10, pady=5) 
+    item_2_image_label.grid(row=6, column=0, padx=10, pady=5)
+    item_2_label.grid(row=7, column=0) 
+    item_2_price_label.grid(row=8, column=0) 
+    item_2_add_button.grid(row=9, column=0, padx=10, pady=5) 
     # Item 3 labels and buttons are displayed
-    item_3_image_label.grid(row=9, column=0, padx=10, pady=5)
-    item_3_label.grid(row=10, column=0) 
-    item_3_price_label.grid(row=11, column=0) 
-    item_3_add_button.grid(row=12, column=0, padx=10, pady=5) 
+    item_3_image_label.grid(row=10, column=0, padx=10, pady=5)
+    item_3_label.grid(row=11, column=0) 
+    item_3_price_label.grid(row=12, column=0) 
+    item_3_add_button.grid(row=13, column=0, padx=10, pady=5) 
     # Item 4 labels and buttons are displayed
-    item_4_image_label.grid(row=13, column=0, padx=10, pady=5)
-    item_4_label.grid(row=14, column=0) 
-    item_4_price_label.grid(row=15, column=0) 
-    item_4_add_button.grid(row=16, column=0, padx=10, pady=5) 
+    item_4_image_label.grid(row=14, column=0, padx=10, pady=5)
+    item_4_label.grid(row=15, column=0) 
+    item_4_price_label.grid(row=16, column=0) 
+    item_4_add_button.grid(row=17, column=0, padx=10, pady=5) 
     # Item 5 labels and buttons are displayed
-    item_5_image_label.grid(row=1, column=1, padx=10, pady=5)
-    item_5_label.grid(row=2, column=1) 
-    item_5_price_label.grid(row=3, column=1) 
-    item_5_add_button.grid(row=4, column=1, padx=10, pady=5) 
+    item_5_image_label.grid(row=2, column=1, padx=10, pady=5)
+    item_5_label.grid(row=3, column=1) 
+    item_5_price_label.grid(row=4, column=1) 
+    item_5_add_button.grid(row=5, column=1, padx=10, pady=5) 
     # Item 6 labels and buttons are displayed
-    item_6_image_label.grid(row=5, column=1, padx=10, pady=5)
-    item_6_label.grid(row=6, column=1) 
-    item_6_price_label.grid(row=7, column=1) 
-    item_6_add_button.grid(row=8, column=1, padx=10, pady=5) 
+    item_6_image_label.grid(row=6, column=1, padx=10, pady=5)
+    item_6_label.grid(row=7, column=1) 
+    item_6_price_label.grid(row=8, column=1) 
+    item_6_add_button.grid(row=9, column=1, padx=10, pady=5) 
     # Item 7 labels and buttons are displayed
-    item_7_image_label.grid(row=9, column=1, padx=10, pady=5)
-    item_7_label.grid(row=10, column=1) 
-    item_7_price_label.grid(row=11, column=1) 
-    item_7_add_button.grid(row=12, column=1, padx=10, pady=5) 
+    item_7_image_label.grid(row=10, column=1, padx=10, pady=5)
+    item_7_label.grid(row=11, column=1) 
+    item_7_price_label.grid(row=12, column=1) 
+    item_7_add_button.grid(row=13, column=1, padx=10, pady=5) 
     # Item 8 labels and buttons are displayed
-    item_8_image_label.grid(row=13, column=1, padx=10, pady=5)
-    item_8_label.grid(row=14, column=1) 
-    item_8_price_label.grid(row=15, column=1) 
-    item_8_add_button.grid(row=16, column=1, padx=10, pady=5) 
+    item_8_image_label.grid(row=14, column=1, padx=10, pady=5)
+    item_8_label.grid(row=15, column=1) 
+    item_8_price_label.grid(row=16, column=1) 
+    item_8_add_button.grid(row=17, column=1, padx=10, pady=5) 
     # Title and inform labels are displayed, view basket button is displayed
-    title_label.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
-    view_basket_button.grid(row=17, column=0, padx=5, pady=15)
-    inform_label.grid(row=17, column=1, columnspan=2, padx=5, pady=15)
+    title_label.grid(row=0, column=0, columnspan=2, padx=5, pady=2)
+    message_label.grid(row=1, column=0, columnspan=2)
+    view_basket_button.grid(row=18, column=0, padx=5, pady=15)
+    inform_label.grid(row=18, column=1, columnspan=2, padx=5, pady=15)
 
 # This is how the user can view the basket
 def basket_function():
@@ -497,7 +499,7 @@ def basket_function():
     total_prices_label = Label(basket_frame, text="Total Prices", bg="#ffffff", font=10)
 
     # Total heading and total price labels are created
-    total_label = Label(basket_frame, text="Total:", bg="#ffffff", font=10)
+    total_label = Label(basket_frame, text="Total to pay:", bg="#ffffff", font=10)
     total_price_label = Label(basket_frame, text="${:.2f}".format(total_price), bg="#ffffff", font=10)
 
     # Add items, order and update buttons are created
@@ -567,7 +569,7 @@ def basket_function():
     price_label.grid(row=0, column=2, padx=5, pady=5)
     total_label.grid(row=9, column=2, padx=5, pady=5)
     total_prices_label.grid(row=0, column=3, padx=5, pady=5)
-    total_price_label.grid(row=9, column=3, padx=5, pady=5)
+    total_price_label.grid(row=9, column=3, padx=5, pady=5, sticky=W)
     update_button.grid(row=9, column=1, padx=5, pady=5)
 
 # This is where the program only displays the item if the item was ordered
