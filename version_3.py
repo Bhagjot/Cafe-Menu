@@ -538,14 +538,14 @@ def view_basket_frame_function():
 
     # This is where the labels and buttons which always show are called
     items_label.grid(row=0, column=0)
-    back_button.grid(row=5, column=0)
-    order_state_label.grid(row=6, column=0, columnspan=3)
+    back_button.grid(row=9, column=0)
+    order_state_label.grid(row=10, column=0, columnspan=3)
     quantity_label.grid(row=0, column=1)
-    order_button.grid(row=5, column=1)
+    order_button.grid(row=9, column=1)
     price_label.grid(row=0, column=2)
-    total_label.grid(row=5, column=2)
+    total_label.grid(row=9, column=2)
     total_prices_label.grid(row=0, column=3)
-    total_price_label.grid(row=5, column=3)
+    total_price_label.grid(row=9, column=3)
 
 # This is where the program only displays the item if the item was ordered
     i = 0
