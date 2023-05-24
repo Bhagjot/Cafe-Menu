@@ -54,7 +54,7 @@ def main_frame():
     welcome_message = Label(main_frame, text="Welcome to the Cafe Menu application!", font=("Arial", 12, "bold"))
 
     # Buttons are created for the actions the user can do
-    login_button = Button(main_frame, text="Login", command=login_frame)
+    login_button = Button(main_frame, text="Login", command=login_frame_function)
     create_account_button = Button(main_frame, text="Create Account", command=create_account_frame)
 
     # All the labels and buttons are called here
@@ -64,7 +64,8 @@ def main_frame():
     create_account_button.grid()
 
 # This is the how the user can login
-def login_frame():
+def login_frame_function():
+    global login_frame_function
     global login_frame
 
     # This is where the login frame is created
@@ -106,7 +107,7 @@ def login_frame():
     def back_function():
         root.title("Cafe Menu")
         main_frame.grid()
-        login_frame.grid_forget()
+        login_frame.destroy()
 
     # This is where the image in converted into a label
     profile_image_label = Label(login_frame, image=profile_image)
@@ -209,7 +210,7 @@ def create_account_frame():
 
     def login_function():
         root.title("Login")
-        login_frame.grid()
+        login_frame_function()
         create_account_frame.grid_forget()
 
     # This is where the profile image is converted into a label
