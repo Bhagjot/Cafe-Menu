@@ -530,14 +530,14 @@ def basket_function():
         ]
 
     # Item quantity spinboxes are created
-    item_1_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_1_quantity)
-    item_2_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_2_quantity)
-    item_3_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_3_quantity)
-    item_4_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_4_quantity)
-    item_5_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_5_quantity)
-    item_6_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_6_quantity)
-    item_7_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_7_quantity)
-    item_8_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=10, width=5, textvariable=item_8_quantity)
+    item_1_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_1_quantity)
+    item_2_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_2_quantity)
+    item_3_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_3_quantity)
+    item_4_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_4_quantity)
+    item_5_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_5_quantity)
+    item_6_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_6_quantity)
+    item_7_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_7_quantity)
+    item_8_quantity_spinbox = Spinbox(basket_frame, bg="#ffffff", from_=0, to=99, width=5, textvariable=item_8_quantity)
 
     # Spinbox default values are set
     item_1_quantity.set(item_quantities[0])
