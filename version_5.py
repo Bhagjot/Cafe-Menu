@@ -143,31 +143,31 @@ def create_account_function():
                     password = password_entry.get()
                     # This is where the username is checked if it is taken
                     if username in accounts:
-                        valid_label.configure(text="Username taken", font=10)
+                        valid_label.configure(text="Username taken")
                         break
                     # This is where the username is checked to make sure the user did input something
                     elif username == "":
-                        valid_label.configure(text="Please type an username", font=10)
+                        valid_label.configure(text="Please type an username")
                         break
                     # This is where the username is valid
                     else:
                         # This is where it is made sure that the user input something for a password
                         if password == "":
-                            valid_label.configure(text="Please type a password", font=10)
+                            valid_label.configure(text="Please type a password")
                             break
                         # This is where the password is valid
                         else:
                             accounts[username] = password_entry.get()
                             json.dump(accounts, open("accounts.json", "w"))
-                            valid_label.configure(text="Account created", font=10)
+                            valid_label.configure(text="Account created")
                             break
                 # This is the message the user receives if the user is not allowed to create an account
                 else:
-                    valid_label.configure(text="You are not allowed to create an account.")
+                    valid_label.configure(text="Unable to create an account.")
                     break
             # This is the message the user receives if the user inputs an invalid age 
             except ValueError:
-                valid_label.configure(text="Invalid age.", font=10)
+                valid_label.configure(text="Invalid age.")
                 break
 
     # This is where the user can go and login
@@ -182,7 +182,7 @@ def create_account_function():
     age_label = Label(create_account_frame, text="Age", bg="#ffffff", font=10)
     username_label = Label(create_account_frame, text="Username", bg="#ffffff", font=10)
     password_label = Label(create_account_frame, text="Password", bg="#ffffff", font=10)
-    valid_label = Label(create_account_frame, bg="#ffffff")
+    valid_label = Label(create_account_frame, bg="#ffffff", font=10)
 
     # age, username and password entries are created
     age_entry = Entry(create_account_frame, bg="#ffffff", width=20)

@@ -208,7 +208,7 @@ def create_account_function():
                             break
                 # This is the message the user receives if the user is not allowed to create an account
                 else:
-                    valid_label.configure(text="You are not allowed to create an account.")
+                    valid_label.configure(text="Unable to create an account.")
                     break
             # This is the message the user receives if the user inputs an invalid age 
             except ValueError:
